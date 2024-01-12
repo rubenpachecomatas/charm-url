@@ -5,5 +5,4 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const generateRandomString = () =>
-  Math.random().toString(36).substring(2, 7);
+export const generateRandomString = () => crypto.randomUUID().slice(0, 5);
