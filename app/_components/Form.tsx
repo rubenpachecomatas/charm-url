@@ -3,17 +3,19 @@
 import { onCreateUrl } from "@/actions/url";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useUrlAlert } from "@/store/use-url-alert";
 import { useState, useTransition } from "react";
 
 export const Form = () => {
   const [value, setValue] = useState("");
   const [isPending, startTransition] = useTransition();
+  const { onUpdate } = useUrlAlert((state) => state);
 
   const handeSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     startTransition(() => {
       onCreateUrl(value)
-        .then((data) => console.log(data))
+        .then((data) => onUpdate(data.url))
         .catch((err) => console.log(err));
     });
   };
