@@ -23,5 +23,9 @@ export const onRedirectToUrl = async (id: string) => {
     throw new Error("Something went wrong");
   }
 
-  return url;
+  if (url) {
+    return url;
+  } else {
+    throw new Error("Url not found");
+  }
 };

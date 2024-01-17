@@ -15,8 +15,10 @@ export const Form = () => {
     e.preventDefault();
     startTransition(() => {
       onCreateUrl(value)
-        .then((data) => onUpdate(data.url))
-        .catch((err) => console.log(err));
+        .then((data) =>
+          onUpdate({ url: `${window.location.href}${data.url}`, error: false })
+        )
+        .catch(() => onUpdate({ url: "", error: true }));
     });
   };
 
@@ -33,7 +35,7 @@ export const Form = () => {
         placeholder="Your long cat size url"
       />
       <Button disabled={isPending} type="submit">
-        Short
+        Shorten
       </Button>
     </form>
   );

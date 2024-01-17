@@ -1,7 +1,9 @@
 "use client";
 
-import { onRedirectToUrl } from "@/actions/url";
-import { useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import useRedirect from "./_hooks/useRedirect";
+import { Loader2 } from "lucide-react";
 
 interface RedirectPageProps {
   params: {
@@ -10,15 +12,32 @@ interface RedirectPageProps {
 }
 
 export default function RedirectPage({ params }: RedirectPageProps) {
-  useEffect(() => {
-    onRedirectToUrl(params.id).then((data) => {
-      if (data?.origin) window.location.replace(data?.origin);
-    });
-  }, [params.id]);
+  const { error, isPending, redirecting } = useRedirect(params.id);
 
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
-      <h1 className="text-2xl font-bold mb-10">Redirecting...</h1>
+      {isPending ? (
+        <div className="flex flex-col items-center gap-5 text-center">
+          <h1 className="text-2xl font-bold">
+            Checking that the url exists...
+          </h1>
+          <Loader2 className="animate-spin size-12" />
+        </div>
+      ) : error ? (
+        <>
+          <h1 className="text-2xl font-bold mb-10">Something went wrong</h1>
+          <Button variant="secondary" asChild>
+            <Link href="/">Go back home</Link>
+          </Button>
+        </>
+      ) : (
+        redirecting && (
+          <div className="flex flex-col items-center gap-5 text-center">
+            <h1 className="text-2xl font-bold">Redirecting...</h1>
+            <Loader2 className="animate-spin size-12" />
+          </div>
+        )
+      )}
     </main>
   );
 }

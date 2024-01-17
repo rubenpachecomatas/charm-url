@@ -1,11 +1,13 @@
 import { create } from "zustand";
 
 interface UrlAlertStore {
-  url: string | null;
-  onUpdate: (url: string) => void;
+  error: boolean;
+  url: string;
+  onUpdate: ({ url, error }: { url: string; error: boolean }) => void;
 }
 
 export const useUrlAlert = create<UrlAlertStore>((set) => ({
-  url: null,
-  onUpdate: (url) => set(() => ({ url: url })),
+  url: "",
+  error: false,
+  onUpdate: ({ url, error }) => set(() => ({ url, error })),
 }));
