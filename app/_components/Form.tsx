@@ -1,6 +1,6 @@
 "use client";
 
-import { onCreateUrl } from "@/actions/url";
+import { getUrl } from "@/actions/url";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useUrlAlert } from "@/store/use-url-alert";
@@ -14,7 +14,7 @@ export const Form = () => {
   const handeSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     startTransition(() => {
-      onCreateUrl(value)
+      getUrl(value)
         .then((data) =>
           onUpdate({ url: `${window.location.href}${data.url}`, error: false })
         )

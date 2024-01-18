@@ -33,3 +33,19 @@ export const getUrlById = async (id: string) => {
 
   return url;
 };
+
+export const getUrlByOrigin = async (origin: string) => {
+  let url;
+
+  try {
+    url = await db.url.findUnique({
+      where: {
+        origin: origin,
+      },
+    });
+  } catch (error) {
+    throw new Error("Something went wrong");
+  }
+
+  return url;
+};

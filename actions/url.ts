@@ -1,9 +1,17 @@
 "use server";
 
-import { createUrl, getUrlById } from "@/lib/url-service";
+import { createUrl, getUrlById, getUrlByOrigin } from "@/lib/url-service";
 
-export const onCreateUrl = async (origin: string) => {
+export const getUrl = async (origin: string) => {
   let url;
+
+  try {
+    url = await getUrlByOrigin(origin);
+  } catch (error) {
+    throw new Error("Something went wrong");
+  }
+
+  if (url) return url;
 
   try {
     url = await createUrl(origin);
