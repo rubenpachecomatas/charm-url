@@ -25,7 +25,7 @@ export const Form = () => {
   return (
     <form
       onSubmit={handeSubmit}
-      className="flex w-full max-w-sm items-center space-x-2"
+      className="flex flex-col sm:flex-row w-full max-w-sm items-center gap-2"
     >
       <Input
         value={value}
@@ -34,7 +34,7 @@ export const Form = () => {
         type="text"
         placeholder="Your long cat size url"
       />
-      <Button disabled={isPending} type="submit">
+      <Button className=" w-full sm:w-auto" disabled={isPending} type="submit">
         Shorten
       </Button>
     </form>
