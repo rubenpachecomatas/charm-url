@@ -1,17 +1,21 @@
-import { useTheme } from "@/store/use-theme";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 const useThemeSwitch = () => {
-  const { theme, onUpdate } = useTheme((state) => state);
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const onThemeChange = (checked: boolean) => {
-    const newTheme = checked ? "dark" : "light";
-
-    onUpdate(newTheme);
-    localStorage.setItem("theme", newTheme);
+    setTheme(checked ? "dark" : "light");
   };
 
   return {
-    theme,
+    mounted,
+    isDarkTheme: theme === "dark",
     onThemeChange,
   };
 };

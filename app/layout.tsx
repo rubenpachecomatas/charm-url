@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Onest } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "./_components/ThemeProvider";
+import { Providers } from "./_components/Providers";
 
 const onest = Onest({ subsets: ["latin"] });
 
@@ -21,9 +21,9 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg" sizes="any" />
       </head>
       <body className={onest.className}>
-        <ThemeProvider>
+        <Providers>
           {children}
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
