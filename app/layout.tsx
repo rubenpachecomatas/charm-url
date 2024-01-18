@@ -6,7 +6,7 @@ import { Providers } from "./_components/Providers";
 const onest = Onest({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Charm url",
+  title: "Charm Url",
   description: "Your charming url in seconds!",
 };
 
