@@ -2,7 +2,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 const useThemeSwitch = () => {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -13,9 +13,11 @@ const useThemeSwitch = () => {
     setTheme(checked ? "dark" : "light");
   };
 
+  const isDarkTheme = resolvedTheme === "dark";
+
   return {
     mounted,
-    isDarkTheme: theme === "dark",
+    isDarkTheme,
     onThemeChange,
   };
 };
