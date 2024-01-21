@@ -1,3 +1,3 @@
-const GITHUB = 'https://github.com/rubenpachecomatas/charm-url';
+const GITHUB = "https://github.com/rubenpachecomatas/charm-url";
 
-export { GITHUB }
+export { GITHUB };
