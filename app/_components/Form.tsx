@@ -14,11 +14,15 @@ export const Form = () => {
   const handeSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     startTransition(() => {
-      getUrl(value)
-        .then((data) =>
-          onUpdate({ url: `${window.location.href}${data.url}`, error: false })
-        )
-        .catch(() => onUpdate({ url: "", error: true }));
+      value !== "" &&
+        getUrl(value)
+          .then((data) =>
+            onUpdate({
+              url: `${window.location.href}${data.url}`,
+              error: false,
+            })
+          )
+          .catch(() => onUpdate({ url: "", error: true }));
     });
   };
 
