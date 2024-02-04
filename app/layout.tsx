@@ -25,7 +25,7 @@ export default function RootLayout({
       <body
         className={cn(
           onest.className,
-          "flex min-h-screen flex-col gap-6 items-center py-40 px-5 sm:px-14"
+          "flex min-h-screen flex-col gap-10 items-center py-40 px-5 sm:px-14"
         )}
       >
         <Providers>{children}</Providers>
