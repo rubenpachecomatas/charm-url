@@ -15,7 +15,7 @@ export default function RedirectPage({ params }: RedirectPageProps) {
   const { error, isPending, redirecting } = useRedirect(params.id);
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-24">
+    <main className="flex min-h-svh flex-col items-center p-24">
       {isPending ? (
         <div className="flex flex-col items-center gap-5 text-center">
           <h1 className="text-2xl font-bold">
